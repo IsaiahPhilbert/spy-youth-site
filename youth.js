@@ -157,6 +157,11 @@ const attendanceCount = document.getElementById("attendanceCount");
 const prayerCount = document.getElementById("prayerCount");
 const pointsCount = document.getElementById("pointsCount");
 
+// Gets dashboard stat labels so leaders and members can see different wording.
+const attendanceCountLabel = document.getElementById("attendanceCountLabel");
+const prayerCountLabel = document.getElementById("prayerCountLabel");
+const pointsCountLabel = document.getElementById("pointsCountLabel");
+
 // Gets login/sign up elements.
 const authScreen = document.getElementById("authScreen");
 const appShell = document.getElementById("appShell");
@@ -826,14 +831,50 @@ function renderDailyVerse() {
 
 // Updates dashboard content.
 function renderDashboard() {
-  attendanceCount.textContent = attendanceRecords.length;
-  prayerCount.textContent = prayerRequests.length;
-  // Shows the logged-in user's online Bible points.
-const myBiblePoints = onlineBibleLeaderboard.find(person => {
-  return currentUser && person.username === currentUser.username;
-});
+  const isLeader = currentUser && currentUser.role === "leader";
 
-pointsCount.textContent = myBiblePoints ? myBiblePoints.points : state.points;
+  // Gets today's date so leader dashboard can show today's group check-ins.
+  const todayKey = getTodayKey();
+
+  // Counts only today's attendance records for leaders.
+  const todaysCheckIns = attendanceRecords.filter(record => {
+    return record.date === todayKey;
+  }).length;
+
+  // Counts only the current member's personal check-ins.
+  const myCheckIns = attendanceRecords.filter(record => {
+    return currentUser && record.username === currentUser.username;
+  }).length;
+
+  // Shows the logged-in user's online Bible points.
+  const myBiblePoints = onlineBibleLeaderboard.find(person => {
+    return currentUser && person.username === currentUser.username;
+  });
+
+  // Adds all Bible points together for the leader dashboard.
+  const totalBiblePoints = onlineBibleLeaderboard.reduce((total, person) => {
+    return total + Number(person.points || 0);
+  }, 0);
+
+  if (isLeader) {
+    attendanceCount.textContent = todaysCheckIns;
+    attendanceCountLabel.textContent = "Today's Check-ins";
+
+    prayerCount.textContent = prayerRequests.length;
+    prayerCountLabel.textContent = "Prayer Requests";
+
+    pointsCount.textContent = totalBiblePoints;
+    pointsCountLabel.textContent = "Total Bible Points";
+  } else {
+    attendanceCount.textContent = myCheckIns;
+    attendanceCountLabel.textContent = "My Check-ins";
+
+    prayerCount.textContent = prayerRequests.length;
+    prayerCountLabel.textContent = "Prayer Requests";
+
+    pointsCount.textContent = myBiblePoints ? myBiblePoints.points : 0;
+    pointsCountLabel.textContent = "My Bible Points";
+  }
 
   const announcementList = document.getElementById("announcementList");
   announcementList.innerHTML = "";
