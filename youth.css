@@ -1,0 +1,1164 @@
+/* Professional SPY Youth Hub theme */
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface-soft: #fbfaf7;
+  --text: #1f2933;
+  --muted: #687385;
+  --primary: #0f766e;
+  --primary-dark: #115e59;
+  --accent: #b7791f;
+  --accent-soft: #f7e7bf;
+  --rose: #b4535f;
+  --blue: #2563eb;
+  --border: #e5e0d8;
+  --shadow: 0 18px 40px rgba(31, 41, 51, 0.1);
+  --shadow-hover: 0 24px 55px rgba(31, 41, 51, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 32%),
+    linear-gradient(225deg, rgba(183, 121, 31, 0.1), transparent 34%),
+    var(--bg);
+  color: var(--text);
+}
+
+/* Forces hidden screens/forms to disappear */
+.hidden,
+.auth-form.hidden,
+#authScreen.hidden,
+#appShell.hidden {
+  display: none !important;
+}
+
+/* Login and sign up screen */
+.auth-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.auth-card {
+  width: min(100%, 410px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 14px;
+  text-align: center;
+}
+
+.auth-card .brand-badge {
+  margin: 0 auto;
+}
+
+.auth-card h1 {
+  margin: 4px 0 0;
+}
+
+.auth-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.auth-tab {
+  background: var(--surface-soft);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.auth-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.auth-form {
+  display: grid;
+  gap: 10px;
+}
+
+.auth-form h3 {
+  margin: 10px 0 0;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.auth-message {
+  min-height: 20px;
+  font-weight: 700;
+  color: var(--rose);
+}
+
+.form-note {
+  text-align: left;
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Top header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 28px rgba(31, 41, 51, 0.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-badge {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), #164e63);
+  color: white;
+  font-weight: 900;
+  letter-spacing: 1px;
+  box-shadow: 0 12px 24px rgba(15, 118, 110, 0.22);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  letter-spacing: 0;
+}
+
+.app-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Shows logged in user's role */
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.role-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 105px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--primary-dark);
+  font-weight: 800;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.logout-btn {
+  padding: 10px 12px;
+  background: var(--text);
+  box-shadow: none;
+}
+
+.logout-btn:hover {
+  background: #111827;
+}
+
+/* Form controls and buttons */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.13);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--primary);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(15, 118, 110, 0.26);
+}
+
+button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Main app layout */
+.app-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Navigation */
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+}
+
+.tab {
+  flex: 0 0 auto;
+  background: var(--surface);
+  color: var(--muted);
+  white-space: nowrap;
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.tab:hover {
+  color: var(--primary);
+  background: var(--surface-soft);
+}
+
+.tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Page sections */
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+  animation: fadeUp 0.35s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  margin: 10px 0 16px;
+  font-size: 1.55rem;
+  color: var(--text);
+}
+
+h3 {
+  margin: 0 0 10px;
+  color: var(--text);
+}
+
+/* Cards */
+.panel,
+.stat-card,
+.resource-card,
+.request-card,
+.event-card,
+.question-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.panel:hover,
+.stat-card:hover,
+.resource-card:hover,
+.request-card:hover,
+.event-card:hover,
+.question-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(15, 118, 110, 0.28);
+}
+
+.panel {
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.feature-panel {
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.08), rgba(183, 121, 31, 0.08)),
+    var(--surface);
+  border-left: 5px solid var(--primary);
+}
+
+.center {
+  text-align: center;
+}
+
+/* Dashboard stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  padding: 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 5px;
+  background: var(--primary);
+}
+
+.stat-card:nth-child(2)::before {
+  background: var(--rose);
+}
+
+.stat-card:nth-child(3)::before {
+  background: var(--accent);
+}
+
+.stat-card span {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.stat-card:nth-child(1) span {
+  color: var(--primary);
+}
+
+.stat-card:nth-child(2) span {
+  color: var(--rose);
+}
+
+.stat-card:nth-child(3) span {
+  color: var(--accent);
+}
+
+.stat-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Forms */
+.form-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.check-row input {
+  width: auto;
+}
+
+/* QR display */
+.qr-box {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  border: 8px solid var(--surface);
+  border-radius: 18px;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background:
+    linear-gradient(90deg, rgba(15, 118, 110, 0.95) 12px, transparent 12px),
+    linear-gradient(rgba(31, 41, 51, 0.92) 12px, transparent 12px),
+    var(--accent-soft);
+  background-size: 34px 34px;
+  color: white;
+  text-shadow: 0 2px 6px rgba(31, 41, 51, 0.45);
+  box-shadow: 0 18px 38px rgba(31, 41, 51, 0.16);
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.025);
+  }
+}
+
+/* Text helpers */
+.verse {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+
+.muted,
+.card-meta {
+  color: var(--muted);
+}
+
+.helper-answer {
+  padding-top: 10px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Card lists */
+.card-list {
+  display: grid;
+  gap: 12px;
+}
+
+.request-card,
+.event-card,
+.question-card,
+.resource-card {
+  padding: 14px;
+}
+
+.card-meta {
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+/* Badges */
+.private-badge,
+.prayed-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.private-badge {
+  background: #fbe4e8;
+  color: #9f1239;
+}
+
+.prayed-badge {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Resources */
+.resource-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.resource-card:nth-child(1) {
+  border-top: 5px solid var(--primary);
+}
+
+.resource-card:nth-child(2) {
+  border-top: 5px solid var(--blue);
+}
+
+.resource-card:nth-child(3) {
+  border-top: 5px solid var(--rose);
+}
+
+.resource-card:nth-child(4) {
+  border-top: 5px solid var(--accent);
+}
+
+/* Leader-only areas are hidden unless the logged-in user is a leader */
+.leader-only {
+  display: none;
+}
+
+body.leader-mode .leader-only {
+  display: block;
+}
+
+body.leader-mode form.leader-only {
+  display: grid;
+}
+
+/* Lists */
+ul,
+ol {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* Leader-only check-in code styling */
+.check-code {
+  display: inline-block;
+  margin: 6px 0 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--primary-dark);
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  border: 1px solid var(--border);
+}
+
+/* Attendance leaderboard card */
+.leaderboard-panel {
+  overflow: hidden;
+}
+
+/* Small text under Attendance Champions title */
+.leaderboard-subtitle {
+  margin: -4px 0 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Container for top 3 leaderboard cards */
+.attendance-podium {
+  display: grid;
+  gap: 10px;
+}
+
+/* Each leaderboard person card */
+.podium-card {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-soft);
+  animation: fadeUp 0.35s ease both;
+}
+
+/* Rank circle: 1st, 2nd, 3rd */
+.podium-rank {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: white;
+  font-weight: 900;
+  box-shadow: 0 10px 20px rgba(31, 41, 51, 0.12);
+}
+
+/* Gold rank color */
+.podium-card:nth-child(1) .podium-rank {
+  background: linear-gradient(135deg, #f6c453, #b7791f);
+}
+
+/* Silver rank color */
+.podium-card:nth-child(2) .podium-rank {
+  background: linear-gradient(135deg, #cbd5e1, #64748b);
+}
+
+/* Bronze rank color */
+.podium-card:nth-child(3) .podium-rank {
+  background: linear-gradient(135deg, #d69e6a, #92400e);
+}
+
+/* Leaderboard name */
+.podium-name {
+  font-weight: 900;
+}
+
+/* Small text under name */
+.podium-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+/* Check-in count badge */
+.podium-score {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--primary-dark);
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+/* Message shown when nobody has checked in yet */
+.empty-leaderboard {
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  border: 1px dashed var(--border);
+}
+
+/* Desktop layout */
+@media (min-width: 760px) {
+  .app-layout {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 20px;
+  }
+
+  .tabs {
+    position: sticky;
+    top: 94px;
+    align-self: start;
+    flex-direction: column;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .tab {
+    width: 100%;
+    text-align: left;
+  }
+
+  .resource-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Phone layout */
+@media (max-width: 430px) {
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .user-area {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .brand-badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: 1.32rem;
+  }
+}
+
+/* Leader answer modal background */
+.answer-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+/* Keeps the modal hidden until a leader clicks Answer */
+.answer-modal.hidden {
+  display: none;
+}
+
+/* Leader answer modal box */
+.answer-modal-box {
+  width: min(520px, 100%);
+  padding: 28px;
+  border-radius: 18px;
+  background: #fffdf8;
+  border: 1px solid #ded6c8;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.25);
+  animation: modalPop 0.2s ease;
+}
+
+/* Modal heading */
+.answer-modal-box h3 {
+  margin-bottom: 8px;
+  color: #1f2933;
+}
+
+/* Modal helper text */
+.answer-modal-box p {
+  margin-bottom: 18px;
+  color: #64748b;
+}
+
+/* Leader answer textarea */
+.answer-modal-box textarea {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  margin-bottom: 18px;
+}
+
+/* Modal button row */
+.answer-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Secondary cancel button */
+.answer-modal-actions .secondary-btn {
+  background: #ffffff;
+  color: #1f2933;
+  border: 1px solid #ded6c8;
+  box-shadow: none;
+}
+
+/* Modal opening animation */
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Leader response comment box inside Q&A cards */
+.leader-answer {
+  margin-top: 18px;
+  padding: 18px 20px;
+  border-left: 5px solid #0f8174;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eefaf7, #fffdf8);
+  box-shadow: 0 12px 28px rgba(15, 129, 116, 0.08);
+}
+
+/* Small label above the leader response */
+.leader-answer-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #0f8174;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+/* Leader response text */
+.leader-answer p {
+  margin: 0;
+  color: #1f2933;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Success popup background */
+.success-toast {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+/* Keeps the success popup hidden */
+.success-toast.hidden {
+  display: none;
+}
+
+/* Success popup card */
+.success-toast-box {
+  position: relative;
+  width: min(390px, 100%);
+  padding: 30px 26px;
+  border-radius: 22px;
+  text-align: center;
+  background: #fffdf8;
+  border: 1px solid #ded6c8;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.25);
+  animation: successPop 0.25s ease;
+}
+
+/* SPY success badge */
+.success-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: #0f8174;
+  color: #ffffff;
+  font-weight: 900;
+  box-shadow: 0 14px 30px rgba(15, 129, 116, 0.25);
+}
+
+/* Success popup title */
+.success-toast-box h3 {
+  margin-bottom: 8px;
+  color: #1f2933;
+}
+
+/* Success popup text */
+.success-toast-box p {
+  margin: 0;
+  color: #64748b;
+}
+
+/* Confetti layer */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Individual confetti pieces */
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 16px;
+  border-radius: 3px;
+  animation: confettiFall 1.4s ease-out forwards;
+}
+
+/* Success popup animation */
+@keyframes successPop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Confetti falling animation */
+@keyframes confettiFall {
+  to {
+    transform: translateY(110vh) rotate(520deg);
+    opacity: 0;
+  }
+}
+
+/* Bible memory test modal background */
+.memory-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(10px);
+}
+
+/* Hides memory modal until opened */
+.memory-modal.hidden {
+  display: none;
+}
+
+/* Memory test popup box */
+.memory-modal-box {
+  width: min(620px, 100%);
+  padding: 28px;
+  border-radius: 18px;
+  background: #fffdf8;
+  border: 1px solid #ded6c8;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.25);
+  animation: modalPop 0.2s ease;
+}
+
+/* Modal title and timer row */
+.memory-modal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+/* Countdown timer pill */
+#memoryTimer {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #0f8174;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+/* Memory answer box */
+#memoryAnswerInput {
+  width: 100%;
+  min-height: 170px;
+  resize: vertical;
+  margin: 18px 0;
+}
+
+/* Hides visible Bible verses while the memory test is open */
+body.memory-testing #dailyVerseText,
+body.memory-testing #dailyVerseReference,
+body.memory-testing #bibleDailyVerseText,
+body.memory-testing #bibleDailyVerseReference,
+body.memory-testing #memoryChallengeText {
+  filter: blur(8px);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Keeps inactive sections fully hidden, even when they are leader-only */
+.section:not(.active) {
+  display: none !important;
+}
+
+/* Shows only the active section */
+.section.active {
+  display: block;
+}
+
+
+/* Birthday reminder cards */
+.birthday-card {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fffdf8, #eefaf7);
+  border: 1px solid #ded6c8;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+/* Colorful top birthday stripe */
+.birthday-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: linear-gradient(90deg, #0f8174, #fde7ad, #bd4f5f, #c57a12);
+}
+
+/* Birthday name */
+.birthday-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #1f2933;
+  font-size: 1.15rem;
+}
+
+/* Birthday countdown text */
+.birthday-countdown {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #0f8174;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+/* Today birthday highlight */
+.birthday-card.birthday-today {
+  background: linear-gradient(135deg, #fff7dd, #eefaf7);
+  border-color: #fde7ad;
+  box-shadow: 0 18px 45px rgba(197, 122, 18, 0.18);
+}
+
+/* Today birthday badge */
+.birthday-card.birthday-today .birthday-countdown {
+  background: #bd4f5f;
+}
+
+/* Small animated hint before birthday reminders */
+.birthday-scroll-hint {
+  margin: 10px 0 18px;
+  color: #0f8174;
+  font-weight: 900;
+  text-align: center;
+  animation: birthdayHintBounce 1.4s ease-in-out infinite;
+}
+
+/* Makes the birthday section feel like its own landing spot */
+.birthday-panel {
+  scroll-margin-top: 120px;
+}
+
+/* Hint animation */
+@keyframes birthdayHintBounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+/* Hide hint after user scrolls */
+.birthday-scroll-hint.hidden {
+  display: none;
+}
+
+/* Extra mobile polish for small phones */
+@media (max-width: 430px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .auth-screen {
+    padding: 18px 12px;
+    align-items: flex-start;
+  }
+
+  .auth-card {
+    padding: 24px 18px;
+  }
+
+  .app-layout {
+    padding: 12px;
+  }
+
+  .tabs {
+    margin-left: -2px;
+    margin-right: -2px;
+  }
+
+  .tab {
+    padding: 11px 13px;
+  }
+
+  .panel,
+  .stat-card,
+  .request-card,
+  .event-card,
+  .question-card,
+  .birthday-card {
+    border-radius: 12px;
+  }
+
+  .answer-modal,
+  .memory-modal,
+  .success-toast {
+    padding: 12px;
+  }
+
+  .answer-modal-box,
+  .memory-modal-box,
+  .success-toast-box {
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 22px 18px;
+  }
+
+  .memory-modal-top,
+  .answer-modal-actions {
+    flex-wrap: wrap;
+  }
+
+  .answer-modal-actions button {
+    flex: 1 1 130px;
+  }
+
+  .podium-card {
+    grid-template-columns: 38px 1fr;
+  }
+
+  .podium-score {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .question-card,
+  .event-card,
+  .request-card,
+  .birthday-card {
+    overflow-wrap: anywhere;
+  }
+}

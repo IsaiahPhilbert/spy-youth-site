@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Page setup -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Browser tab title -->
+  <title>SPY Youth Hub</title>
+
+  <!-- Connects CSS file -->
+  <link rel="stylesheet" href="youth.css" />
+</head>
+<body>
+  <!-- LOGIN / SIGN UP SCREEN -->
+  <section id="authScreen" class="auth-screen">
+    <div class="auth-card">
+      <div class="brand-badge">SPY</div>
+
+      <h1>SPY Youth Hub</h1>
+      <p>St. Sebastian Church Youth Ministry</p>
+
+      <!-- Two option buttons -->
+      <div class="auth-tabs">
+        <button id="showLoginBtn" class="auth-tab active" type="button">Log In</button>
+        <button id="showSignupBtn" class="auth-tab" type="button">Sign Up</button>
+      </div>
+
+      <!-- Login form -->
+      <form id="loginForm" class="auth-form">
+        <input id="loginUsername" type="text" placeholder="Username" />
+        <input id="loginPassword" type="password" placeholder="Password" />
+        <button type="submit">Log In</button>
+      </form>
+
+      <!-- Sign up form -->
+      <form id="signupForm" class="auth-form hidden">
+        <h3>Basic Participant Information</h3>
+
+        <input id="signupFullName" type="text" placeholder="Full Name" />
+
+        <input
+          id="signupUsername"
+          type="text"
+          placeholder="Username - remember this to log in"
+        />
+
+        <select id="signupGender">
+          <option value="">Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+        <input id="signupDob" type="date" />
+        <input id="signupAge" type="number" min="0" step="1" placeholder="Age" />
+        <input id="signupSchool" type="text" placeholder="School / College / Work" />
+
+        <input
+          id="signupGrade"
+          type="text"
+          placeholder="Grade / Year (optional only if you're working)"
+        />
+
+        <input id="signupChurch" type="text" placeholder="Church / Parish" />
+
+        <h3>Contact Details</h3>
+
+        <input id="signupMobile" type="tel" placeholder="Mobile Number" />
+        <textarea id="signupAddress" placeholder="Home Address"></textarea>
+
+        <h3>Parent / Guardian Information</h3>
+
+        <input id="guardianName" type="text" placeholder="Parent / Guardian Full Name" />
+        <input id="guardianRelationship" type="text" placeholder="Relationship to Participant" />
+
+        <input
+          id="guardianMobile"
+          type="tel"
+          placeholder="Parent / Guardian Mobile Number (Emergency Contact)"
+        />
+
+        <h3>Photography & Media Release</h3>
+
+        <p class="form-note">
+          I consent to photographs/videos being used for church and youth group promotional purposes.
+        </p>
+
+        <label class="check-row">
+          <input type="radio" name="mediaConsent" value="Yes" />
+          Yes
+        </label>
+
+        <label class="check-row">
+          <input type="radio" name="mediaConsent" value="No" />
+          No
+        </label>
+
+        <h3>Code of Conduct Agreement</h3>
+
+        <p class="form-note">
+          I agree to follow the Youth Group's Code of Conduct.
+        </p>
+
+        <label class="check-row">
+          <input id="conductAgreement" type="checkbox" />
+          Yes
+        </label>
+
+        <input
+          id="signupPassword"
+          type="password"
+          placeholder="Password - remember this to log in"
+        />
+
+        <!-- Private invite code so only real SPY youth members can sign up -->
+        <input
+          id="signupInviteCode"
+          type="password"
+          placeholder="SPY invite code"
+        />
+
+        <button type="submit">Create Account</button>
+      </form>
+
+      <!-- Login / sign up messages appear here -->
+      <p id="authMessage" class="auth-message"></p>
+    </div>
+  </section>
+
+  <!-- MAIN APP AFTER LOGIN -->
+  <div id="appShell" class="app-shell hidden">
+    <!-- Top header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-badge">SPY</div>
+
+        <div>
+          <h1>SPY Youth Hub</h1>
+          <p>St. Sebastian Church Youth Ministry</p>
+        </div>
+      </div>
+
+      <!-- Shows the logged-in user's role automatically -->
+      <div class="user-area">
+        <span id="currentUserLabel" class="role-pill">Youth Member</span>
+        <button id="logoutBtn" class="logout-btn">Log Out</button>
+      </div>
+    </header>
+
+    <!-- Main app layout -->
+    <main class="app-layout">
+      <!-- Navigation tabs -->
+      <nav class="tabs">
+        <button class="tab active" data-section="dashboard">Home</button>
+        <button class="tab" data-section="attendance">Check-In</button>
+        <button class="tab" data-section="prayer">Prayer</button>
+        <button class="tab" data-section="bible">Bible</button>
+        <button class="tab" data-section="events">Events</button>
+        <button class="tab" data-section="questions">Q&A</button>
+        <button class="tab" data-section="resources">Resources</button>
+        <button class="tab leader-only" data-section="members">Members</button>
+      </nav>
+
+      <!-- HOME / DASHBOARD SECTION -->
+<section id="dashboard" class="section active">
+  <h2>Welcome to SPY</h2>
+
+  <div class="stats-grid">
+    <article class="stat-card">
+      <span id="attendanceCount">0</span>
+      <p>Check-ins</p>
+    </article>
+
+    <article class="stat-card">
+      <span id="prayerCount">0</span>
+      <p>Prayer requests</p>
+    </article>
+
+    <article class="stat-card">
+      <span id="pointsCount">0</span>
+      <p>Bible points</p>
+    </article>
+  </div>
+
+  <div class="panel feature-panel">
+    <h3>This Week</h3>
+    <p id="dailyVerseText" class="verse"></p>
+    <p id="dailyVerseReference" class="muted"></p>
+  </div>
+
+  <div class="panel">
+    <h3>Announcements</h3>
+    <ul id="announcementList"></ul>
+
+    <form id="announcementForm" class="leader-only form-stack">
+      <input id="announcementInput" type="text" placeholder="Post a new announcement" />
+      <button type="submit">Post Announcement</button>
+    </form>
+  </div>
+
+  <!-- Scroll hint for birthday reminders -->
+<div id="birthdayScrollHint" class="birthday-scroll-hint">
+  Scroll down for birthday reminders
+</div>
+
+<!-- 30-day birthday reminder for everyone -->
+<div class="panel birthday-panel">
+  <h3>Birthday Reminders</h3>
+  <p class="card-meta">Upcoming birthdays in the next 30 days</p>
+  <div id="birthdayList" class="card-list"></div>
+</div>
+</section>
+
+      <!-- ATTENDANCE / CHECK-IN SECTION -->
+      <section id="attendance" class="section">
+        <h2>Attendance Check-In</h2>
+
+        <div class="panel center">
+          <div class="qr-box">SPY</div>
+          <p id="checkInUserText" class="muted">Log in to check in</p>
+
+          <div class="leader-only">
+            <h3>Today's Leader Code</h3>
+            <p id="leaderCheckInCode" class="check-code">SPY-0000</p>
+          </div>
+
+          <input id="checkInCodeInput" type="text" placeholder="Enter today's SPY code" />
+          <button id="checkInBtn">Check In Today</button>
+          <p id="checkInMessage" class="helper-answer"></p>
+        </div>
+
+        <div class="panel leaderboard-panel">
+          <h3>Attendance Champions</h3>
+          <p class="leaderboard-subtitle">Top 3 most faithful attendees</p>
+          <div id="attendanceLeaderboard" class="attendance-podium"></div>
+        </div>
+
+        <div class="panel leader-only">
+          <h3>Attendance Records</h3>
+          <ul id="attendanceList"></ul>
+        </div>
+      </section>
+
+      <!-- PRAYER REQUEST SECTION -->
+      <section id="prayer" class="section">
+        <h2>Prayer Requests</h2>
+
+        <form id="prayerForm" class="panel form-stack">
+          <input id="prayerName" type="text" placeholder="Name or Anonymous" />
+          <textarea id="prayerText" placeholder="Write your prayer request"></textarea>
+
+          <label class="check-row">
+            <input id="privatePrayer" type="checkbox" />
+            Private request for leaders only
+          </label>
+
+          <button type="submit">Submit Prayer Request</button>
+        </form>
+
+        <div class="panel">
+          <h3>Prayer Wall</h3>
+          <div id="prayerList" class="card-list"></div>
+        </div>
+      </section>
+
+      <!-- BIBLE CHALLENGE SECTION -->
+      <section id="bible" class="section">
+        <h2>Bible Challenge</h2>
+
+        <div class="panel feature-panel">
+        <h3>Daily Verse</h3>
+
+    <!-- This updates automatically every day from youth.js -->
+        <p id="bibleDailyVerseText" class="verse"></p>
+        <p id="bibleDailyVerseReference" class="muted"></p>
+        </div>
+
+        <div class="panel">
+        <h3>Memory Challenge</h3>
+        <p id="memoryChallengeText">Memorize today's verse.</p>
+
+  <!-- Opens the timed memory test popup -->
+        <button id="testMemoryBtn">Test Your Memory</button>
+       
+      </div>
+
+        <div class="panel">
+          <h3>Leaderboard</h3>
+          <ol id="leaderboardList"></ol>
+        </div>
+
+        <div class="panel">
+          <h3>AI Bible Helper</h3>
+          <textarea id="aiQuestion" placeholder="Ask something like: What does John 3:16 mean?"></textarea>
+          <button id="askAiBtn">Ask Helper</button>
+          <p id="aiAnswer" class="helper-answer"></p>
+        </div>
+      </section>
+
+      <!-- EVENTS SECTION -->
+      <section id="events" class="section">
+        <h2>Events</h2>
+
+        <div id="eventList" class="card-list"></div>
+
+        <form id="eventForm" class="panel form-stack leader-only">
+          <h3>Add Event</h3>
+          <input id="eventTitle" type="text" placeholder="Event title" />
+          <input id="eventDate" type="date" />
+          <textarea id="eventDescription" placeholder="Event details"></textarea>
+          <button type="submit">Create Event</button>
+        </form>
+      </section>
+
+      <!-- ASK THE LEADERS SECTION -->
+      <section id="questions" class="section">
+        <h2>Ask the Leaders</h2>
+
+        <form id="questionForm" class="panel form-stack">
+        <textarea id="questionInput" placeholder="Ask your question"></textarea>
+
+  <!-- Lets the user choose whether their name appears on the website -->
+        <label class="check-row">
+        <input id="showQuestionName" type="checkbox" />
+        Show my name on the website
+        </label>
+
+        <button type="submit">Submit Question</button>
+        </form>
+
+        <div class="panel">
+          <h3>Q&A Archive</h3>
+          <input id="questionSearch" type="search" placeholder="Search questions" />
+          <div id="questionList" class="card-list"></div>
+        </div>
+      </section>
+
+ <!-- RESOURCE LIBRARY SECTION -->
+<section id="resources" class="section">
+  <h2>Resource Library</h2>
+
+  <!-- Leader-only online resource form -->
+  <!-- Leaders use this to add resource links that everyone can see -->
+  <form id="resourceForm" class="panel form-stack leader-only">
+    <h3>Add Resource</h3>
+
+    <input id="resourceTitle" type="text" placeholder="Resource title" />
+
+    <select id="resourceCategory">
+      <option value="Prayer Guide">Prayer Guide</option>
+      <option value="Bible Study">Bible Study</option>
+      <option value="Worship">Worship</option>
+      <option value="Event Photos">Event Photos</option>
+      <option value="Youth File">Youth File</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <input id="resourceUrl" type="url" placeholder="Paste resource link" />
+
+    <textarea
+      id="resourceDescription"
+      placeholder="Short description"
+    ></textarea>
+
+    <button type="submit">Add Resource</button>
+  </form>
+
+
+  <!-- Online resources from Supabase appear here -->
+  <div class="panel">
+    <h3>Shared Resources</h3>
+    <div id="resourceList" class="card-list"></div>
+  </div>
+</section>
+
+<!-- MEMBER DIRECTORY SECTION -->
+<section id="members" class="section leader-only">
+  <h2>Member Directory</h2>
+
+  <div class="panel">
+    <h3>Registered Members</h3>
+    <input id="memberSearch" type="search" placeholder="Search members" />
+    <div id="memberList" class="card-list"></div>
+  </div>
+</section>
+
+    </main>
+  </div>
+
+  <!-- Leader answer popup modal -->
+<div id="answerModal" class="answer-modal hidden">
+  <div class="answer-modal-box">
+    <h3>Leader Response</h3>
+    <p>Write a helpful answer for the youth question.</p>
+
+    <textarea
+      id="leaderAnswerInput"
+      placeholder="Type your response here..."
+    ></textarea>
+
+    <div class="answer-modal-actions">
+      <button id="cancelAnswerBtn" type="button" class="secondary-btn">Cancel</button>
+      <button id="saveAnswerBtn" type="button">Save Answer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Fun success popup for completed/submitted actions -->
+<div id="successToast" class="success-toast hidden">
+  <div id="confettiLayer" class="confetti-layer"></div>
+
+  <div class="success-toast-box">
+    <div class="success-icon">SPY</div>
+    <h3 id="successToastTitle">Done!</h3>
+    <p id="successToastText">Saved successfully.</p>
+  </div>
+</div>
+
+<!-- Bible memory test popup -->
+<div id="memoryModal" class="memory-modal hidden">
+  <div class="memory-modal-box">
+    <div class="memory-modal-top">
+      <h3>Test Your Memory</h3>
+      <span id="memoryTimer">30s</span>
+    </div>
+
+    <p id="memoryReference" class="muted"></p>
+
+    <textarea
+      id="memoryAnswerInput"
+      placeholder="Type the verse exactly..."
+    ></textarea>
+
+    <div class="answer-modal-actions">
+      <button id="cancelMemoryBtn" type="button" class="secondary-btn">Cancel</button>
+      <button id="submitMemoryBtn" type="button">Submit Answer</button>
+    </div>
+
+    <p id="memoryResult" class="helper-answer"></p>
+  </div>
+</div>
+
+  <!-- Supabase must load before youth.js -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="youth.js"></script>
+</body>
+</html>
